@@ -1,0 +1,43 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <button class="mt-1 pull-right" mat-dialog-close><i class="material-icons">close</i></button>
+    </div>
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            <div mat-dialog-title class="c-text">{{ getModalHeader() }}</div>
+            <div class="clearfix"></div>
+            <mat-dialog-content class="col-xl-12">
+                <table *ngIf="data.kitStatus.kitHistory" class="table  mt-3 mb-5 table-sm">
+                    <thead class="c-text-thead">
+                        <tr>
+
+                            <th>Page Number</th>
+                            <th>Page Status Code</th>
+                            <th>Description</th>
+                            <th>User ID</th>
+                            <th>Last Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let historyElement of data.kitStatus.kitHistory">
+
+                            <td>{{ historyElement.relativePageNumber }}</td>
+                            <td>{{ historyElement.pageStatusCode }}</td>
+                            <td>{{ historyElement.actionDesription }}</td>
+                            <td>{{ historyElement.userId }}</td>
+                            <td>{{ historyElement.actionDate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </mat-dialog-content>
+            <!-- <mat-dialog-actions class="col-md-12 ">
+        <button mat-button type="button" class="cancel_btn p-2" mat-dialog-close>Close</button>
+        <br><br>
+      </mat-dialog-actions> -->
+
+            <br><br>
+        </div>
+    </div>
+</div>

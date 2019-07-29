@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<main role="main" class="container"  *ngIf="content">
+  <div class="row">
+    <div class="col-md-7">
+   <h2> Enter CAP and Kit #</h2>
+  <br/>
+    <div class="modal-content modal-content-left">
+      <div style="padding:2%;font-size: 12px;">
+      Enter CAP# and Kit# Once you have entered and confirmed the number you will be taken to the assessment for the activity.
+      <br/><br/>
+      Once you press the "Assign Kit....." button the Kit# will be associated with your name - no one else will be able to claim the kit for credit. 
+  
+      <br/><br/> 
+      <div class="text-center">
+      <span class="txtLable"><i style="color:red">*</i> CAP #:</span> <input class="textbox"  type="text"/><br/>
+      <span class="txtLable"><i style="color:red">*</i> KIT #:</span> <input class="textbox" type="text"/><br/>
+      <button class=" btn_full" type="submit" >Submit</button>
+    </div>
+  </div>
+    </div>
+    </div>
+    <div class="col-md-5">
+      <h2 class="pull-left"> Your kits</h2>
+  <br/>
+  <h3 class="pull-right ">
+        <div class="dropdown">
+          <button class="dropbtn">sort</button>
+          <div class="dropdown-content">
+            <a href="#">CAP #</a>
+            <a href="#">Kit #</a>
+            <a href="#">Maling</a>
+          </div>
+        </div>
+      </h3>
+      <div class="clearfix"></div>
+      <div class="modal-content">
+        <div style="padding:2%;font-size: 12px;">
+          <h1 class="pull-left spanpadding" style="font-size: 18px;">72637362</h1>
+          <button class="pull-right btn btn-outline-primary">Resume Activity</button>
+          <div class="clearfix"></div>
+          <br/>
+          <h2>
+            <span class="spanpadding">CAP #125412</span> 
+            <span class="spanpadding">Mailing. PIP C</span> 
+            <span class="spanpadding text-success"><i class="fa fa-check fa-xs"></i>  Results Submited</span>
+             <span class="spanpadding text-warning"><i class="fa fa-clock-o fa-xs"></i>  CME/CE Pending </span>
+            </h2>
+          <div class="dashedline"></div>
+          <a class="spanpadding c-link">Participant Summary </a><a class="spanpadding">CMC/CE Credit</a>
+        </div>
+      </div>
+      <br/>
+      <div class="modal-content">
+          <div style="padding:2%;font-size: 12px;">
+            <h1 style="font-size: 18px;">22611362</h1>
+            <button class="pull-right btn btn-outline-primary">Resume Activity</button>
+            <br/>
+            <h3>CAP #125412 Mailing. PIP C Results Submited CME/CE Pending </h3>
+            <br/>
+            <a>Participant Summary </a><a>CMC/CE Credit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+<app-footer></app-footer>

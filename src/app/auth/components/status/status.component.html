@@ -1,0 +1,29 @@
+
+
+
+<div class="row" style="padding-bottom:20px;">
+  <div class="col-md-4">
+    <a [routerLink]="['/']" class="btn btn-primary">Home</a>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-primary" (click)="clearStore()">Clear Store</button>
+  </div>
+</div>
+
+<div class="card" style="width: 36rem;">
+  <div class="card-body">
+    <h5 class="card-title">Current State</h5>
+    <ul>
+      <li><strong>isAuthenticated</strong> - {{isAuthenticated}}</li>
+      <div *ngIf="userInfo">
+        <li><strong>userInfo.userCapNumber</strong> - {{ userInfo.userCapNumber || 'null'}}</li>
+        <li><strong>userInfo.firstName</strong> - {{ userInfo.firstName || 'null'}}</li>
+        <li><strong>userInfo.lastName</strong> - {{ userInfo.lastName || 'null'}}</li>
+        <li><strong>userInfo.userName</strong> - {{ userInfo.username || 'null'}}</li>
+      </div>
+      <li><strong>token</strong> - {{ token || 'null'}}</li>
+      <li><strong>errorMessage</strong> - {{ errorMessage || 'null'}}</li>
+    </ul>
+  </div>
+</div>
+

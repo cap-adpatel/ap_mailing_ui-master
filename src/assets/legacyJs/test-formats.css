@@ -1,0 +1,169 @@
+a {
+    text-decoration: none;
+    color: #009bbf;
+}
+
+a:hover {
+    color: #009bbf;
+}
+
+progress {
+    background-color: #F2F2F2; /*This could be any colour*/
+    width: 65%;
+    height: 0.6em;
+    margin-top: 0.75em;
+}
+
+/*For firefox*/
+progress::-moz-progress-bar {
+    background: #009bbf;
+}
+
+/*For webkit browsers*/
+progress::-webkit-progress-bar {
+    background: #F2F2F2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
+
+progress::-webkit-progress-value {
+    background: #009bbf;
+}
+
+/*For IE*/
+progress::-ms-fill {
+    background: #009bbf;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.inputFile {
+    /* visibility: hidden etc. wont work */
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputFile:focus + label {
+    /* keyboard navigation */
+    outline: 1px dotted #000;
+}
+
+.inputFile + label * {
+    pointer-events: none;
+
+}
+
+
+.submitButtonLabel {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputFileLabel {
+    border-width: 2px;
+    left: 0px;
+    top: 0px;
+    width: 225px;
+    height: 56px;
+    background-color: #009BBF;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border: rgba(0, 155, 191, 1);
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 12px;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 10px
+}
+
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.noFile {
+    order-width: 0px;
+    #position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 105px;
+    height: 15px;
+    font-family: 'Arial Italic', 'Arial';
+    font-weight: 400;
+    font-style: italic;
+    font-size: 12px;
+    color: #8A8A8A;
+}
+
+.complete_img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 18px;
+    border-width: 0px;
+}
+
+
+.partial_response {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 460px;
+    overflow-wrap: break-word;
+    border-width: 0px;
+}
+
+.partial_res_img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 14px;
+    height: 13px;
+    border-width: 0px;
+}
+
+.file_label {
+    border-width: 0px;
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    width: 80px;
+    height: 15px;
+    font-size: 12px;
+    color: red;
+}
+
+.inputFileBtn {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #009BBF;
+    color: #FFFFFF;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}

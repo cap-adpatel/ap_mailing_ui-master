@@ -1,0 +1,103 @@
+<div *ngIf="content" style="padding:5px">
+  <div class="col-md-12">
+    <app-mailing-search (mailingSelected)="loadMailingData($event)"
+                        (kitEntered)="onKitFilterChange($event)"
+    ></app-mailing-search>
+  </div>
+
+<div class="row">
+    <div class="col-md-4">
+          <label class="c-text-label" >Results    ({{dataSource.data.length}})  </label> <!--note: should be dynamic -->
+    </div>
+    <div class="col-md-8" style="text-align: right">
+          <button class="c-btn" (click)="onDownloadAllTriggered(null)" ><div
+            [innerHtml]="content.buttons.downloadPrenalytics"></div></button>
+          <button class="c-btn ml-2" (click)="onDownloadTriggered(null, true)" *ngIf="enabledForVendor"><div
+            [innerHtml]="content.buttons.downloadStarterFiles"
+            ></div></button>
+          <button class="c-btn ml-2" (click)="onUploadTriggered(null)" *ngIf="enabledForVendor"
+          ><div [innerHtml]="content.buttons.uploadVendorFiles"></div></button>
+        </div>
+  </div>
+<div class="row">
+<div class="col-md-12">
+  <table mat-table #table [dataSource]="dataSource" matSort class="table table-bordered  mt-3 mb-5 table-font-size table-sm"
+           *ngIf="content" style="padding-bottom:0px;margin-bottom:0px;">
+  <ng-container matColumnDef="capNumber">
+    <th *matHeaderCellDef mat-sort-header class="bg-color"><span [innerHtml]="content.headers.capNumber"></span></th>
+    <td *matCellDef="let element"> {{element.capNumber}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="kitId">
+    <th *matHeaderCellDef mat-sort-header class="bg-color"><span [innerHtml]="content.headers.kitNumber"></span></th>
+    <td *matCellDef="let element"> {{element.kitId}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="program">
+    <th *matHeaderCellDef class="bg-color"><span [innerHtml]="content.headers.program"></span></th>
+    <td *matCellDef="let element">
+      {{ element.mailingItemId }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="filesLastUpdated">
+    <th *matHeaderCellDef mat-sort-header class="bg-color"><span [innerHtml]="content.headers.dateReceived"></span></th>
+    <td *matCellDef="let element"> {{element.filesLastUpdated}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="uploadfiles">
+    <th *matHeaderCellDef class="bg-color"><span [innerHtml]="content.headers.labFiles"></span></th>
+    <td *matCellDef="let element">
+
+      <div *ngIf="enabledForVendor;then showAsDownloadAction else showAsDownloadView"></div>
+      <ng-template #showAsDownloadAction>
+        <a href="javascript: void(0);" class="c-btn-link" (click)="onDownloadTriggered(element, true)">View/Download {{element.starterFiles | filesCount }} File(s)</a>
+      </ng-template>
+      <ng-template #showAsDownloadView>
+        <a href="javascript: void(0);" class="c-btn-link" (click)="onDownloadTriggered(element, false)">View {{element.starterFiles | filesCount }} File(s)</a>
+      </ng-template>
+      <br> {{ element.starterFiles | filesLastVersion }} {{ element.starterFiles | filesSizeSum | bytes:2 }}
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="uploaddate">
+    <th *matHeaderCellDef class="bg-color"><span [innerHtml]="content.headers.vendorUploadDate"></span></th>
+    <td *matCellDef="let element"> {{element.mutagenizedLastUpdated}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="vendorprocess">
+    <th *matHeaderCellDef class="bg-color"><span [innerHtml]="content.headers.vendorUploadLink"></span></th>
+    <td *matCellDef="let element">
+      <div *ngIf="element.starterFiles && element.starterFiles.length > 0">
+        <a href="javascript: void(0);" class="c-btn-link" (click)="onUploadTriggered(element)">
+          <div *ngIf="enabledForVendor;then showAsAction else showAsView"></div>
+          <ng-template #showAsAction>
+            Upload Processed File
+          </ng-template>
+          <ng-template #showAsView>
+            View Processed File
+          </ng-template>
+        </a>
+        <div> <span [innerHtml]="mutagenizedStatus.transform(element)"></span> {{ element.mutagenizedFiles | filesLastVersion }} {{ element.mutagenizedFiles | filesSizeSum | bytes:2 }} </div>
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div *ngIf="showLoading"><mat-progress-bar value=60 mode="indeterminate"></mat-progress-bar></div>
+
+ <div *ngIf="!showLoading && dataSource.data?.length === 0" class="no-records">
+  <p style="border: 1px solid black ; border-radius: 5px; padding: 15px; margin-top:10px;">No Rows to Show </p>
+</div>
+<div style="padding:10px; margin: 20px;text-align: right ; position: relative;">
+<mat-paginator [length]="dataSource.length"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator> </div>
+
+</div>
+</div>
+</div>
+

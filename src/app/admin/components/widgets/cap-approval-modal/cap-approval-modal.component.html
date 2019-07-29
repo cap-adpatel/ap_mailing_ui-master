@@ -1,0 +1,37 @@
+<div class="content textcenter" *ngIf="showLoading">
+    <mat-progress-bar value=60 mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <button class="mt-1 pull-right" mat-dialog-close><i class="material-icons">close</i></button>
+    </div>
+    <div class="panel-body">
+
+        <div class="col-md-12">
+
+            <!-- <div *ngIf="approvalFailed" class="modal-alert-invalid"> The mailing approval failed.</div>
+
+            <div *ngIf="approvalSucceeded" class="modal-alert-success"> <img src="../../../../../assets/img/icon_complete.png" style="float: left; padding:5px">
+                <div style="float: left; padding: 7px"> The mailing is approved.</div>
+            </div> -->
+
+            <div mat-dialog-title class="c-text">{{ data.mailingDescription}} Staff Approval<br/>Mailing Date: {{ data.mailingDate }}</div>
+            <div class="clearfix"></div>
+            <div *ngIf="approvalSucceeded;then showApprove else showApprove"></div>
+
+
+
+            <!-- <ng-template #showClose>
+          <button  class="c-btn-link" mat-dialog-close>Close</button> </ng-template> -->
+            <!-- close link and close button icon  -->
+
+
+            <ng-template #showApprove>
+                <button (click)="approve()" class="c-btn">Approve</button> &nbsp;
+                <button class="c-btn-link" mat-dialog-close>Cancel</button>
+            </ng-template>
+
+            <br><br>
+        </div>
+    </div>
+</div>

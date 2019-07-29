@@ -1,0 +1,126 @@
+<div *ngIf="content" style="padding:5px">
+    <div class="col-md-12">
+        <app-mailing-search (mailingSelected)="loadMailingData($event)" (kitEntered)="onKitFilterChange($event)">
+        </app-mailing-search>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="c-text-label">Results ({{dataSource.data.length}}) | &nbsp; </label>
+            <!--note: should be dynamic -->
+
+
+            <label title="{{showExportExcelMsg}}"
+                class="export-text-before {{showExportExcelMsg ==''?'export-text-after':'export-text-before' }}"
+                (click)="exportAsXLSX()"> Export to Excel</label>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <div *ngIf="approvalFailed" class="modal-alert-invalid"> The mailing approval failed.</div>
+
+                <div *ngIf="approvalSucceeded" class="modal-alert-success"> <img
+                        src="../../../../assets/img/icon_complete.png" style="float: left; padding:5px">
+                        <div style="float: left; padding: 7px"> The mailing is approved. </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4" style="text-align:right"> <button class="c-btn" (click)="onViewApprovalTriggered()">
+                <div [innerHtml]="content.buttons.approveVendorFiles"></div>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <table mat-table #table [dataSource]="dataSource" matSort
+                class="table table-bordered  mt-3 mb-5 table-font-size table-sm" *ngIf="content"
+                style="padding-bottom:0px;margin-bottom:0px;">
+                <ng-container matColumnDef="capNumber">
+                    <th *matHeaderCellDef mat-sort-header class="bg-color "><span
+                            [innerHtml]="content.headers.capNumber"></span></th>
+                    <td *matCellDef="let element"> {{element.capNumber}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="kitId">
+                    <th *matHeaderCellDef mat-sort-header class="bg-color"><span
+                            [innerHtml]="content.headers.kitNumber"></span></th>
+                    <td *matCellDef="let element">
+                        {{element.kitId}}<br>
+                        <a href="javascript: void(0);" class="c-btn-link mr-2"
+                            (click)="onViewAuditTriggered(element)">History</a>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="program">
+                    <th *matHeaderCellDef class="bg-color"><span [innerHtml]="content.headers.program"></span></th>
+                    <td *matCellDef="let element">
+                        {{ element.mailingItemId }}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="preanalyticInfo">
+                    <th *matHeaderCellDef mat-sort-header class="bg-color"><span
+                            [innerHtml]="content.headers.preanalyticInfo"></span>
+                        <br>
+                        <pre>Status  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Received</pre>
+
+                    </th>
+                    <td *matCellDef="let element">
+                        <span [innerHtml]="element.preanalyticInfo"></span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="labFiles">
+
+                    <th *matHeaderCellDef mat-sort-header class="bg-color"><span
+                            [innerHtml]="content.headers.labFiles"></span>
+                        <br>
+                        <pre>Status  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Uploaded   # of Files</pre>
+                    </th>
+
+
+                    <td *matCellDef="let element" [innerHtml]="element.labFiles">
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="vendorFiles">
+                    <th *matHeaderCellDef mat-sort-header class="bg-color"><span
+                            [innerHtml]="content.headers.vendorFiles"></span>
+                        <pre>Status  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Processed   # of Files</pre>
+                    </th>
+
+                    <td *matCellDef="let element">
+                        <span [innerHtml]="element.vendorFiles"></span>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="resultsInfo" >
+                    <th *matHeaderCellDef mat-sort-header class="bg-color" style="padding:7px">
+                        <pre [innerHtml]="content.headers.resultsInfo"></pre>
+                        <pre>Status  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Submitted</pre>
+                    </th>
+                    <td *matCellDef="let element">
+                        <span [innerHtml]="element.resultsInfo"></span>
+                    </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <div *ngIf="showLoading">
+                <mat-progress-bar value=60 mode="indeterminate"></mat-progress-bar>
+            </div>
+
+            <div *ngIf="!showLoading && dataSource.data?.length === 0" class="no-records">
+
+                <p style="border: 1px solid black ; border-radius: 5px; padding: 15px; margin-top:10px;"> No Rows to
+                    Show </p>
+            </div>
+
+            <div style="padding:10px; margin: 20px; text-align: right; position: relative">
+                <mat-paginator [length]="dataSource.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

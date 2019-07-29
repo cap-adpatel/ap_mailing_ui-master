@@ -1,0 +1,14 @@
+<section class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <img src="{{imagePath}}" alt="logo">
+      </div>
+      <div class="col-sm-8 text-right " style="margin-top:12px">
+        <span>{{ userInfo?.firstName }}</span>  |
+        <a (click)="logout()" class="logout-text">Logout</a>
+      </div>
+    </div>
+  </div>
+</section>
+

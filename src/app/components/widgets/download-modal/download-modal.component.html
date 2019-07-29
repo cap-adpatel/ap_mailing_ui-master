@@ -1,0 +1,58 @@
+<div class="content textcenter" *ngIf="showLoading">
+    <mat-progress-bar value=60 mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <button class="mt-1 pull-right" mat-dialog-close><i class="material-icons">close</i></button>
+    </div>
+    <div class="panel-body">
+
+        <div class="col-md-12">
+            <div mat-dialog-title class="c-text">{{ getModalHeader() }}</div>
+            <div class="clearfix"></div>
+            <div *ngIf="downloadInProgress" class="c-message">Your download has commenced. Please wait.</div>
+            <div *ngIf="downloadErrorOccurred" class="modal-alert-invalid">Your download failed. Please try again.</div>
+            <br>
+            <br>
+
+            <mat-dialog-content class="col-xl-12">
+                <table *ngIf="starterFiles" class="table  mt-3 mb-5 table-sm">
+                    <thead class="c-text-thead">
+                        <tr>
+                            <th *ngIf="enabledForVendor">
+                                <mat-checkbox [checked]="isSelected" (change)="toggleTheGroup()">
+                                    <label> </label>
+                                </mat-checkbox>
+                            </th>
+                            <th>File Name</th>
+                            <th>File Size</th>
+                            <th>Last Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let aFile of starterFiles">
+                            <td *ngIf="enabledForVendor">
+                                <mat-checkbox [checked]="aFile.checkedForDownload" (change)="aFile.checkedForDownload = !aFile.checkedForDownload">
+                                    <label> </label>
+                                </mat-checkbox>
+                            </td>
+                            <td>{{ aFile | fileDescriptor }}</td>
+                            <td>{{ aFile.size | bytes:2 }}</td>
+                            <td>{{ aFile.received }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </mat-dialog-content>
+            <mat-dialog-actions class="col-md-12 ">
+                <button class="c-btn" (click)="initiateDownload()" *ngIf="enabledForVendor"> Initiate Download(s)</button>
+                <button class="c-btn-link ml-2" mat-dialog-close>Close</button>
+
+                <br><br>
+            </mat-dialog-actions>
+
+        </div>
+
+    </div>
+</div>

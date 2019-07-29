@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<main role="main" class="container"  *ngIf="content">
+  <label class="mt-3 c-text-label"> <span [innerHtml]="content.unauthorizedHeader"></span></label>
+
+  <div class="alert alert-default" style="padding:10px;">
+    <div>{{ content.unauthorizedMessage }}</div>
+    <div><a (click)="returnHome()">Home</a></div>
+  </div>
+
+</main>
+<app-footer></app-footer>

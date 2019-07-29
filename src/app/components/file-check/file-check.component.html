@@ -1,0 +1,74 @@
+<div *ngIf="showLoading"><mat-progress-bar value=60 mode="indeterminate"></mat-progress-bar></div>
+<div *ngIf="content" style="padding:5px">
+  <div class="col-md-12">
+    <app-mailing-search
+      (mailingSelected)="loadMailingData($event)"
+      (kitEntered)="onKitFilterChange($event)"
+    ></app-mailing-search>
+  </div>
+
+  <div class="col-md-12">
+    <div class="alert alert-default" *ngIf="mailingId" style="padding-left:40px; padding-top:10px;">
+      <button class="c-btn" (click)="addFiles()">Load Files</button>
+      <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+      &nbsp; &nbsp;
+      <button class="c-btn" (click)="onReset()">Reset</button>
+    </div>
+  </div>
+  <div class="col-md-12" *ngIf="showTable">
+
+    <table mat-table #table [dataSource]="dataSource" matSort class="table table-bordered  mt-3 mb-5 table-font-size table-sm"
+           style="padding-bottom:0px;margin-bottom:0px;">
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-sort-header class="bg-color">File Name</th>
+        <td *matCellDef="let element"> {{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="size">
+        <th *matHeaderCellDef mat-sort-header class="bg-color">File Size</th>
+        <td *matCellDef="let element">
+          Local: {{ element.size }}B /<br>
+          @CAP: {{ element.capSize }}B
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="received">
+        <th *matHeaderCellDef mat-sort-header class="bg-color">Last Modified</th>
+        <td *matCellDef="let element">
+          Local: {{ element.received | date:'shortDate' }} /<br>
+          @CAP: {{ element.capReceived | date:'shortDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="checksum">
+        <th *matHeaderCellDef mat-sort-header class="bg-color">Checksum</th>
+        <td *matCellDef="let element">
+          Local: {{ element.checksum }} /<br>
+          @CAP: {{ element.capEtag }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="verdict">
+        <th *matHeaderCellDef mat-sort-header class="bg-color">Verdict</th>
+        <td *matCellDef="let element">
+          {{ element.verdict }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div *ngIf="!showLoading && dataSource.data?.length === 0" class="no-records">
+      <p style="border: 1px solid black ; border-radius: 5px; padding: 15px; margin-top:10px;">No Rows to Show </p>
+    </div>
+    <div style="padding:10px; margin: 20px;text-align: right ; position: relative;">
+
+      <mat-paginator [length]="dataSource.length"
+                     [pageSize]="100"
+                     [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <link rel="stylesheet" type="text/css" href="./test-formats.css">
+
+    <!--<link rel="stylesheet" type="text/css"-->
+    <!--href="http://elss.cap.org/elss/adf/styles/cache/capElssportalCompressed-desktop-8o5ssb-en-ltr-webkit.css">-->
+
+    <link rel="stylesheet" type="text/css" href="https://elss.cap.org/appsuite/elss/css/jquery.autocomplete.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css">
+
+    <!--<script type="text/javascript" src="http://elss.cap.org/elss/org/cap/css/myaccount/ui/js/jquery-1.3.2.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://elss.cap.org/appsuite/elss/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://elss.cap.org/appsuite/elss/js/slick.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="//cdn.rawgit.com/satazor/SparkMD5/master/spark-md5.min.js"></script>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.452.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js"></script>
+
+    <script type="text/javascript" src="./mock-loader.js"></script>
+
+    <script type="text/javascript" src="./file-processing.js"></script>
+    <script type="text/javascript" src="./ccs-services.js"></script>
+    <script type="text/javascript" src="./audit-services.js"></script>
+    <script type="text/javascript" src="./util.js"></script>
+    <script type="text/javascript" src="./ui-elements.js"></script>
+
+</head>
+<body style="background-color:#F8FCFD; width:600px;">
+
+<div style=font-size:14px;color:#333333;font-weight:normal;font-style:normal;text-align:left;font-family:Arial,Helvetica,sans-serif;white-space:nowrap>
+    <label for="interim-due-date">Is After Interim Due Date: </label>
+    <select id="interim-due-date">
+        <option value="">Please select...</option>
+    </select><br/>
+    <label for="cap-approved">Approved by CAP Staff: </label>
+    <select id="cap-approved">
+        <option value="">Please select...</option>
+    </select><br/>
+    <label for="mailings">Choose a mailing: </label>
+    <select id="mailings">
+        <option value="">Please select...</option>
+    </select><br/>
+    <label for="kits">Choose a kit: </label>
+    <select id="kits">
+        <option value="">Please select...</option>
+    </select><br/><br/>
+    <div id="file-generator-syntax"></div>
+    <div id="generated-file-path"></div>
+    <div id="upload-status"></div>
+</div>
+<hr/>
+<hr/>
+<br/>
+
+
+<h2 style="font-size:14px;color:#333333;font-weight:bold;font-style:normal;text-align:left;font-family:Arial,Helvetica,sans-serif;white-space:nowrap">
+    Step 2: Upload/Replace files
+</h2>
+
+
+<!-- modal -->
+<div id="uploadSection">
+
+    <div id="upload-message"></div>
+
+    <div id="file-catcher">
+        <div id="file-input-section">
+            <div style="font-size:14px; font-weight:bold; text-align:left; white-space:nowrap; color:Blue;">
+                <input id="file-input" type="file" multiple="multiple" class="inputFile" style="display:none"/>
+                <label for="file-input" class="inputFileLabel">UPLOAD ONE OR MULTIPLE FILE(S)</label>
+            </div>
+        </div>
+        <div id="input-message"></div>
+        <div style="margin:10px">
+            <div id="file-list-display"></div>
+        </div>
+        <button type="submit" id="file-button" class="submitButtonLabel">BEGIN UPLOADING</button>
+    </div>
+</div>
+
+<!--x: <div id="fw"></div>-->
+
+
+<div id="downloadSection">
+    <div value="#{elssrfevaluiBundle['label.insilico.step3']}"
+         inlineStyle="font-size:14px; color:#333333; font-weight:bold; font-style:normal; text-align:left; font-family:Arial, Helvetica, sans-serif;"
+         noWrap="true" id="ot13"></div>
+    <div clientComponent="true"
+         inlineStyle="font-size:14px;color:#333333;font-weight:normal;font-style:normal;text-align:left;font-family:Arial,Helvetica,sans-serif;white-space:nowrap">
+        <div style="margin:10px">
+            <div id="download-message"></div>
+            <div style="margin:10px">
+                <div id="mutagenized-list-display"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "app-file-repository" : {
+    "headers" : {
+      "filterTag": "Filter",
+      "capNumber": "CAP #",
+      "kitNumber": "Kit #",
+      "program": "Program",
+      "dateReceived": "Date Received",
+      "labFiles": "Lab Baseline Files",
+      "vendorUploadDate": "Date Uploaded",
+      "vendorUploadLink": "Vendor Processed Files",
+      "mailingId": "Mailing"
+    },
+    "buttons": {
+      "downloadPrenalytics": "DOWNLOAD ALL PREANALYTICS",
+      "downloadStarterFiles": "DOWNLOAD ALL LAB FOLDERS",
+      "uploadVendorFiles": "UPLOAD TO ALL LAB FOLDERS"
+
+    },
+    "messages": {
+      "tbd": "tbd"
+    },
+    "miscContent": {
+      "tbd": "tbd"
+    }
+  },
+  "app-logout" : {
+    "logoutHeader": "Log Out",
+    "logoutMessage": "You are logged out."
+  },
+  "app-system-maintenance" : {
+    "maintenanceHeader": "System Under Maintenance",
+    "maintenanceMessage": "The system is currently under maintenance. Please give us some time to finish up before you try again."
+  },
+  "app-unauthorized-landing" : {
+    "unauthorizedHeader": "Unauthorized",
+    "unauthorizedMessage": "You do not have access to the web page you seek. If you believe you have reached this message in error, click the link below to try again."
+  },
+  "app-mailing-search" : {
+    "headers": {
+      "filterTag": "Filter",
+      "capNumber": "CAP #",
+      "kitNumber": "Kit #"
+    }
+  },
+  "app-reports" : {
+    "headers" : {
+      "capNumber": "CAP #",
+      "kitNumber": "Kit #",
+      "program": "Program",
+      "preanalyticInfo": "Preanalytic Information",
+      "labFiles": "Customer Uploaded Files",
+      "vendorFiles": "Vendor Processed Files",
+      "resultsInfo": "Results Submitted to CAP"
+    },
+    "buttons": {
+      "tbd1": "tbd",
+      "tbd2": "tbd",
+      "tbd3": "tbd",
+      "approveVendorFiles" : "VALIDATE & NOTIFY LAB"
+    },
+    "messages": {
+      "tbd1": "tbd",
+      "tbd2": "tbd",
+      "tbd3": "tbd"
+    },
+    "miscContent": {
+      "tbd1": "tbd",
+      "tbd2": "tbd",
+      "tbd3": "tbd"
+    }
+  }
+}
+

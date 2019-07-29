@@ -1,0 +1,135 @@
+<div class="content textcenter" *ngIf="showLoading">
+    <mat-progress-bar value=60 mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <button class="mt-1 pull-right" (click)="closeDialog()"><i class="material-icons">close</i></button>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+
+            <div class="col-md-12">
+                <div mat-dialog-title class="c-text">{{ getModalHeader() }}</div>
+                <div class="clearfix"></div>
+
+                <div *ngIf="!whatWeSeeIfFine()" class="modal-alert-invalid"><mat-icon>cancel</mat-icon> One or more files are invalid, or not supported. Allowed file types: bed, fastq, bam. Only alpha/numeric characters, hyphen, underscore and period are allowed in the file name.</div>
+                <div *ngIf="formIsSubmitted" class="c-message">Your upload has commenced. Please wait.</div>
+                <div *ngIf="uploadErrorOccurred" class="modal-alert-invalid">Your upload failed. Please try again.</div>
+                <br>
+                <mat-dialog-content class="col-xl-12">
+                    <div> <button [disabled]="uploading || uploadSuccessful" class="c-btn" (click)="addFiles()" *ngIf="enabledForVendor">
+              Browse Files
+            </button> </div>
+
+                    <table *ngIf="data" class="table mt-3 mb-5 table-sm">
+                        <thead class="c-text-thead">
+                            <tr >
+                                <th style="border-bottom:1px solid #ddd">File Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let aFile of allElements">
+                                <td>
+                                    {{ aFile.name }} <span *ngIf="aFile.version > 1" style="color:red"> (Ver. {{ aFile.version }})</span>
+                                </td>
+                                <!--<td style="text-align: center;">-->
+
+                                <!--<div *ngIf="!isNewFile(aFile)">-->
+
+                                <!--<div *ngIf="checksumMatched(aFile);then showMatched else showMismatch"></div>-->
+                                <!--<ng-template #showMatched>-->
+                                <!--<span style="text-align:center;color:green">VALIDATED</span>-->
+                                <!--</ng-template>-->
+                                <!--<ng-template #showMismatch>-->
+                                <!--<span style="text-align:center;color:red">CHECKSUM FAILED</span>-->
+                                <!--</ng-template>-->
+                                <!--</div>-->
+
+                                <!--</td>-->
+
+                                <div *ngIf="isNewFile(aFile);then showNew else showSize"></div>
+                                <ng-template #showNew>
+
+                                    <div *ngIf="aFile.validForUpload;then showDetails else showInvalid"></div>
+                                    <ng-template #showDetails>
+
+                                        <div *ngIf="(aFile.progress > 0);then showStats else showPending"></div>
+                                        <ng-template #showStats>
+
+                                          <div *ngIf="aFile.fileMessage;then showFailed else showProgress"></div>
+                                          <ng-template #showProgress>
+                                            <td style="text-align:center;">{{ aFile.progress | percent:'1.2' }}</td>
+                                            <td style="text-align:center;">{{ aFile.speed }}</td>
+                                          </ng-template>
+                                          <ng-template #showFailed>
+                                            <td colspan="2" style="text-align:center;color:red">INVALID</td>
+                                          </ng-template>
+
+
+
+
+                                        </ng-template>
+                                        <ng-template #showPending>
+                                            <td colspan="2" style="text-align:center;color:blue">PENDING</td>
+                                        </ng-template>
+
+                                    </ng-template>
+                                    <ng-template #showInvalid>
+                                        <td colspan="2" style="text-align:center;color:red">INVALID</td>
+                                    </ng-template>
+
+                                </ng-template>
+                                <ng-template #showSize>
+                                    <td colspan="2" style="text-align:center; border-top:1px solid #ddd;">{{ aFile.size | bytes:2 }}</td>
+                                </ng-template>
+
+                                <td *ngIf="enabledForVendor">
+                                    <button class="c-btn-link" (click)="removeFile(aFile)">{{ aFile.removeLink }}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row col-md-12">
+                        <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <!-- <div mat-dialog-title class="c-text">Upload Files</div>
+                <div class="clearfix"></div> -->
+
+                                <div *ngIf="!allFilesValidForUpload()">
+
+                                </div>
+                                <!-- Validation Message -->
+
+                                <mat-dialog-content class="col-xl-12">
+
+
+                                    <div class="row">
+                                        <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+
+
+                                        <div *ngIf="analyzing;then showAnalyzing else showNot"></div>
+                                        <ng-template #showAnalyzing>
+                                            <span style="color:red;">Analyzing</span>
+                                        </ng-template>
+                                        <ng-template #showNot>
+                                            <button *ngIf="enabledForVendor && allFilesValidForUpload()" class="c-btn p-2" (click)="commenceUpload()"> Commence
+                        Upload
+                      </button>
+                                        </ng-template>
+
+                                        <button class="c-btn-link ml-2" (click)="closeDialog()">Done</button>
+                                    </div>
+                                </mat-dialog-content>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-dialog-content>
+            </div>
+        </div>
+    </div>
+</div>

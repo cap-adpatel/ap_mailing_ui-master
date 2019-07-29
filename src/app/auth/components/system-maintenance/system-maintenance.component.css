@@ -1,0 +1,112 @@
+.textbox{
+    width: 30%;
+    height: 30px;
+    margin: 2% 4% 1% 5%;
+}
+.txtLable{
+    padding-right: 2%;
+    font-size: 12px;
+
+}
+.btn_full{
+       padding: 8px 40px 8px 40px !important;
+       font-size: 14px !important;
+        display: inline-block;
+        box-sizing: border-box;
+        border: 1px solid #009bbf;
+        margin: 0;
+      
+        color: #ffff;
+        background-color: #009bbf;
+        font-family: "Arial Bold", Arial;
+        cursor: pointer;
+        
+        line-height: 1;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+}
+.btn-outline-primary{
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.dropbtn {
+    color: #009bbf;
+    text-decoration: underline;
+    display: inline;
+    transition: color 0.25s ease;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-weight: normal;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  .modal-content-left{
+   min-height: 287px !important;
+  }
+  
+  .icon-sm{
+    
+    display: inline-block;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 16px;
+    height: 10px;
+    width: 10px;
+    line-height: 1;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  .spanpadding{
+    padding-left: 1.5%;
+  }
+  .text-success{
+    color: #2E7D32;
+  }
+  .text-warning{
+    color: #FFC107;
+  }
+  .dashedline{
+    border-top:lightgray 3px;
+    border-top-style: dashed;
+    width: inherit;
+    margin-bottom: 3%;
+    margin-top:3%;
+    margin-left: 1.5%;
+  }
+
+  .c-link{
+    text-decoration: underline;
+  }
